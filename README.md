@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # MySQL & Express Identity Reconciliation Backend
 
 This is the pure JavaScript backend implementation using Express and MySQL as requested, ready to be paired with a frontend (MERN stack but with MySQL).
@@ -40,3 +41,6 @@ curl -X POST http://localhost:3000/identify \
 -H "Content-Type: application/json" \
 -d '{"email":"mcfly@hillvalley.edu", "phoneNumber":"123456"}'
 ```
+=======
+# bitespeed-identity-task
+>>>>>>> 5d84db3c1ba47ad5ef21d5e1248b803c90d75f66
