@@ -1,10 +1,8 @@
--- 1. Create and Use the Database
+
 CREATE DATABASE IF NOT EXISTS CompanyOperations;
 USE CompanyOperations;
 
--- 2. Create Tables (Ordered to respect Foreign Key dependencies)
 
--- Create Subcontractor Table
 CREATE TABLE Subcontractor (
     Subcontractor_ID INT PRIMARY KEY,
     Name VARCHAR(100),
@@ -13,7 +11,7 @@ CREATE TABLE Subcontractor (
     Email VARCHAR(100)
 );
 
--- Create Material Table
+
 CREATE TABLE Material (
     Material_ID INT PRIMARY KEY,
     Material_Type VARCHAR(100),
@@ -23,7 +21,7 @@ CREATE TABLE Material (
     FOREIGN KEY (Subcontractor_ID) REFERENCES Subcontractor(Subcontractor_ID)
 );
 
--- Create Product Table
+
 CREATE TABLE Product (
     Product_ID INT PRIMARY KEY,
     Material_ID INT,
@@ -35,7 +33,7 @@ CREATE TABLE Product (
     FOREIGN KEY (Subcontractor_ID) REFERENCES Subcontractor(Subcontractor_ID)
 );
 
--- Create Event Table
+
 CREATE TABLE Event (
     Event_ID INT PRIMARY KEY,
     Location VARCHAR(255),
@@ -43,7 +41,7 @@ CREATE TABLE Event (
     Address_ID INT
 );
 
--- Create Invoice Table
+
 CREATE TABLE Invoice (
     Invoice_ID INT PRIMARY KEY,
     Price DECIMAL(10, 2),
@@ -53,7 +51,7 @@ CREATE TABLE Invoice (
     Total DECIMAL(10, 2)
 );
 
--- Create Order Table ('Order' is a reserved keyword in MySQL, so it is wrapped in backticks)
+
 CREATE TABLE `Order` (
     Order_ID INT PRIMARY KEY,
     Order_Type VARCHAR(50),
@@ -63,7 +61,7 @@ CREATE TABLE `Order` (
     FOREIGN KEY (Product_ID) REFERENCES Product(Product_ID)
 );
 
--- Create Customer Table
+
 CREATE TABLE Customer (
     Customer_ID INT PRIMARY KEY,
     Name VARCHAR(100),
@@ -81,9 +79,7 @@ CREATE TABLE Customer (
     FOREIGN KEY (Order_ID) REFERENCES `Order`(Order_ID)
 );
 
--- 3. Insert Data (Ordered to respect Foreign Key dependencies)
 
--- Insert into Subcontractor
 INSERT INTO Subcontractor (Subcontractor_ID, Name, Address, Postal_Code, Email) VALUES
 (1, 'Acme Corp', '123 Factory Blvd', '10001', 'contact@acmecorp.com'),
 (2, 'Global Supplies', '456 Warehouse Way', '20002', 'sales@globalsupplies.com'),
@@ -91,7 +87,7 @@ INSERT INTO Subcontractor (Subcontractor_ID, Name, Address, Postal_Code, Email) 
 (4, 'BuildIt Right', '321 Construction Rd', '40004', 'hello@builditright.com'),
 (5, 'Apex Logistics', '654 Transport St', '50005', 'support@apexlogistics.com');
 
--- Insert into Material
+
 INSERT INTO Material (Material_ID, Material_Type, Availability, Stock, Subcontractor_ID) VALUES
 (1, 'Steel', 'In Stock', 500, 1),
 (2, 'Wood', 'In Stock', 1200, 2),
@@ -99,7 +95,7 @@ INSERT INTO Material (Material_ID, Material_Type, Availability, Stock, Subcontra
 (4, 'Glass', 'In Stock', 300, 4),
 (5, 'Aluminum', 'Low Stock', 50, 1);
 
--- Insert into Product
+
 INSERT INTO Product (Product_ID, Material_ID, Type, Availability, Stock, Subcontractor_ID) VALUES
 (1, 1, 'Metal Frame', 'In Stock', 150, 1),
 (2, 2, 'Wooden Table', 'In Stock', 75, 2),
@@ -107,7 +103,7 @@ INSERT INTO Product (Product_ID, Material_ID, Type, Availability, Stock, Subcont
 (4, 4, 'Glass Window', 'In Stock', 40, 4),
 (5, 5, 'Aluminum Door', 'In Stock', 25, 1);
 
--- Insert into Event
+
 INSERT INTO Event (Event_ID, Location, Date, Address_ID) VALUES
 (1, 'Convention Center', '2024-05-10', 101),
 (2, 'Downtown Plaza', '2024-06-15', 102),
@@ -115,7 +111,7 @@ INSERT INTO Event (Event_ID, Location, Date, Address_ID) VALUES
 (4, 'Grand Hotel', '2024-08-05', 104),
 (5, 'Exhibition Hall', '2024-09-12', 105);
 
--- Insert into Invoice
+
 INSERT INTO Invoice (Invoice_ID, Price, Tax, Date, Due_Date, Total) VALUES
 (1, 1000.00, 100.00, '2024-01-10', '2024-02-10', 1100.00),
 (2, 250.00, 25.00, '2024-01-12', '2024-02-12', 275.00),
@@ -123,7 +119,6 @@ INSERT INTO Invoice (Invoice_ID, Price, Tax, Date, Due_Date, Total) VALUES
 (4, 150.00, 15.00, '2024-01-18', '2024-02-18', 165.00),
 (5, 800.00, 80.00, '2024-01-20', '2024-02-20', 880.00);
 
--- Insert into Order
 INSERT INTO `Order` (Order_ID, Order_Type, Product_Type, Product_Location, Product_ID) VALUES
 (1, 'Online', 'Furniture', 'Warehouse A', 2),
 (2, 'In-Store', 'Hardware', 'Store Front 1', 1),
@@ -131,7 +126,7 @@ INSERT INTO `Order` (Order_ID, Order_Type, Product_Type, Product_Location, Produ
 (4, 'Phone', 'Furniture', 'Warehouse A', 3),
 (5, 'In-Store', 'Hardware', 'Store Front 2', 5);
 
--- Insert into Customer
+
 INSERT INTO Customer (Customer_ID, Name, Surname, Address, Age, Postal_Code, Email, Gender, Event_ID, Invoice_ID, Order_ID) VALUES
 (1, 'John', 'Doe', '111 Maple St', 34, '90210', 'john.doe@email.com', 'M', 1, 1, 1),
 (2, 'Jane', 'Smith', '222 Oak Ave', 28, '90211', 'jane.smith@email.com', 'F', 2, 2, 2),

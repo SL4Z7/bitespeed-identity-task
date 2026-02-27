@@ -91,5 +91,5 @@ The server will start on `http://localhost:3000`.
    git add README.md
    git commit -m "docs: completely update README with live URL and API docs"
    git push origin main
-
+3. **Sample used in mysql db:** https://docs.google.com/document/d/1MelXpB4HQQ0Y0LAEdq5cn6RHLmZPyDeR3NeoergQA1w/edit?usp=sharing 
 ```
