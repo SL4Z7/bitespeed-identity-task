@@ -6,6 +6,15 @@ const app = express();
 
 app.use(express.json());
 
+// Health Check Route
+app.get('/', (req, res) => {
+  res.status(200).json({
+    status: "Online",
+    message: "Bitespeed Identity Reconciliation API is running perfectly!",
+    documentation: "Please send POST requests to the /identify endpoint."
+  });
+});
+
 app.post('/identify', async (req, res) => {
     try {
         const { email, phoneNumber } = req.body;
