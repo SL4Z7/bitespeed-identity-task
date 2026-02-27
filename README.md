@@ -1,46 +1,95 @@
-<<<<<<< HEAD
-# MySQL & Express Identity Reconciliation Backend
+# Identity Reconciliation Service - Bitespeed Backend Task
 
-This is the pure JavaScript backend implementation using Express and MySQL as requested, ready to be paired with a frontend (MERN stack but with MySQL).
+This is a backend web service built for FluxKart.com to consolidate customer contact information across multiple purchases. It exposes an `/identify` endpoint that links orders made with different emails and phone numbers to the same underlying customer identity.
 
-## Prerequisites
-- Node.js
-- A running MySQL server (e.g., XAMPP, MAMP, Docker, or standalone MySQL).
+## 🚀 Live Demo
+**Hosted Endpoint:** `https://bitespeed-identity-task-1.onrender.com/identify`
 
-## Setup Instructions
+## 🛠 Tech Stack
+* **Backend:** Node.js, Express.js
+* **Database:** MySQL (Hosted on Aiven)
+* **ORM:** Prisma
+* **Deployment:** Render
 
-1. **Install Dependencies:**
+## 💻 Local Setup Instructions
+
+1. **Clone the repository:**
    ```bash
-   npm install
-   ```
+   git clone [https://github.com/SL4Z7/bitespeed-identity-task.git](https://github.com/SL4Z7/bitespeed-identity-task.git)
+   cd bitespeed-identity-task
 
-2. **Configure Database Connection:**
-   Create a `.env` file in the root directory (where `package.json` is) and add your MySQL database connection URL.
-   Example:
-   ```env
-   DATABASE_URL="mysql://root:password@localhost:3306/identity_db"
-   ```
-   *(Make sure to replace `root`, `password`, and `identity_db` with your actual MySQL credentials and desired database name).*
-
-3. **Run Migrations (Create Tables):**
-   ```bash
-   npx prisma db push
-   ```
-   *(This will connect to your MySQL database and automatically create the Contact table).*
-
-4. **Start the Development Server:**
-   ```bash
-   npm run dev
-   ```
-   The server will start on `http://localhost:3000`.
-
-## Testing the API
-**Example Request:**
-```bash
-curl -X POST http://localhost:3000/identify \
--H "Content-Type: application/json" \
--d '{"email":"mcfly@hillvalley.edu", "phoneNumber":"123456"}'
 ```
-=======
-# bitespeed-identity-task
->>>>>>> 5d84db3c1ba47ad5ef21d5e1248b803c90d75f66
+
+2. **Install dependencies:**
+```bash
+npm install
+
+```
+
+
+3. **Set up environment variables:**
+Create a `.env` file in the root directory and add your MySQL connection string:
+```env
+DATABASE_URL="mysql://root:password@localhost:3306/identity_db"
+
+```
+
+
+4. **Run database migrations:**
+```bash
+npx prisma db push
+
+```
+
+
+5. **Start the server:**
+```bash
+npm run dev
+
+```
+
+
+The server will start on `http://localhost:3000`.
+
+## 📡 API Contract
+
+### `POST /identify`
+
+**Request Body (JSON):**
+
+```json
+{
+  "email": "mcfly@hillvalley.edu",
+  "phoneNumber": "123456"
+}
+
+```
+
+**Expected Response (200 OK):**
+
+```json
+{
+  "contact": {
+    "primaryContatctId": 1,
+    "emails": ["lorraine@hillvalley.edu", "mcfly@hillvalley.edu"],
+    "phoneNumbers": ["123456"],
+    "secondaryContactIds": [23]
+  }
+}
+
+```
+
+## 👨‍💻 Author
+
+```
+
+### What to do next:
+
+1. **Save it:** Press `Ctrl + S` in VS Code to save your `README.md` file.
+2. **Push it:** Run these commands in your terminal to send it to GitHub:
+   ```bash
+   git add README.md
+   git commit -m "docs: completely update README with live URL and API docs"
+   git push origin main
+
+```
